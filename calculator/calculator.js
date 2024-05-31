@@ -40,20 +40,23 @@ function setupIntialValues() {
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
-	document.getElementById(`monthly-payment`).innerText = `hello`;
+	document.getElementById(`monthly-payment`).innerText = result;
 }
 
 // Given an object of values (a value has amount, years and rate ),
 // calculate the monthly payment.  The output should be a string
 // that always has 2 decimal places.
-// function calculateMonthlyPayment(values) {
-// 	let p = document.getElementById('loan-amount').value;
-// 	let i = document.getElementById('loan-rate').value * 0.01 / 12;
-// 	let n = document.getElementById('loan-years').value * 12;
-// 	let numerator = p * i;
-// 	let denominator = 1 - (1 + i) ** n;
-// 	let monthlyPayment = numerator / denominator;
-// }
+function calculateMonthlyPayment(values) {
+	let p = values.amount;
+	let i = values.rate * 0.01 / 12;
+	let n = values.years * 12;
+	let numerator = p * i;
+	let denominator = 1 - (1 + i) ** -n;
+	let monthlyPayment = numerator / denominator;
+	let result = (Math.round(monthlyPayment * 100) / 100).toFixed(2);
+	// console.log(monthlyPayment);
+	return result;
+}
 
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
