@@ -58,3 +58,5 @@ function setupIntialValues() {
 	loanYears.value = 0;
 	loanRate.value = 0;
 }
+
+//done!
