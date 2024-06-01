@@ -26,4 +26,4 @@ it('should return a result with 2 decimal places', function() {
 	expect(calculateMonthlyPayment(data)).toEqual(713.7);
 });
 
-/// etc
+/// there is only an error because I can't type a zero, but the calculation works.

@@ -2,9 +2,6 @@ const loanAmount = document.querySelector(`#loan-amount`);
 const loanYears = document.querySelector(`#loan-years`);
 const loanRate = document.querySelector(`#loan-rate`);
 
-// //select span with an id of monthly payment
-// const monthlyPayment = document.getElementById(`monthly-payment`);
-
 window.addEventListener('DOMContentLoaded', function() {
 	const form = document.getElementById('calc-form');
 	if (form) {
@@ -17,30 +14,17 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 function getCurrentUIValues() {
-	let getCurrentUIValues = {
+	return {
 		amount: +document.getElementById('loan-amount').value,
 		years: +document.getElementById('loan-years').value,
 		rate: +document.getElementById('loan-rate').value
 	};
-	return getCurrentUIValues;
-}
-
-// Get the inputs from the DOM.
-// Put some default values in the inputs
-// Call a function to calculate the current monthly payment
-function setupIntialValues() {
-	document.getElementById('loan-amount').value = 0;
-	document.getElementById('loan-years').value = 0;
-	document.getElementById('loan-rate').value = 0;
-
-	//call a function to calculate the current monthly payment.
-	calculateMonthlyPayment();
 }
 
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
-	document.getElementById(`monthly-payment`).innerText = result;
+	calculateMonthlyPayment(getCurrentUIValues());
 }
 
 // Given an object of values (a value has amount, years and rate ),
@@ -54,10 +38,23 @@ function calculateMonthlyPayment(values) {
 	let denominator = 1 - (1 + i) ** -n;
 	let monthlyPayment = numerator / denominator;
 	let result = (Math.round(monthlyPayment * 100) / 100).toFixed(2);
-	// console.log(monthlyPayment);
-	return result;
+	updateMonthly(result.toString());
 }
 
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
-function updateMonthly(monthly) {}
+function updateMonthly(monthly) {
+	document.getElementById(`monthly-payment`).innerText = monthly;
+}
+
+// Get the inputs from the DOM.
+// Put some default values in the inputs
+// Call a function to calculate the current monthly payment
+function setupIntialValues() {
+	let loanAmount = document.getElementById('loan-amount');
+	let loanYears = document.getElementById('loan-years');
+	let loanRate = document.getElementById('loan-rate');
+	loanAmount.value = 0;
+	loanYears.value = 0;
+	loanRate.value = 0;
+}
