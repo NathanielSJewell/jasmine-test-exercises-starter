@@ -27,3 +27,22 @@ function appendTd(tr, value) {
 	//appends the newTd to the passed in table row element.
 	tr.append(newTd);
 }
+
+// - Create a `appendDeleteBtn(tr)`, it will be similar to `append(tr, value)`. This function will create a ‘td’ with the value ‘X’, when clicked it will delete the table row it belongs to
+// - Write the functionality for appending a ‘td’ to a ‘tr’ with the value ‘X’
+// - Set an click event listener on the ‘td’ that will remove the parent ‘tr’ from the dom. You will have to find a way to access the parent row of the ‘td’ from the click event
+function appendDeleteBtn(tr) {
+	let createTd = document.createElement('td');
+	createTd.innerText = `X`;
+
+	//appends new td to the passed tr
+	tr.append(createTd);
+
+	paymentTbody.append(tr);
+
+	createTd.addEventListener(`click`, function(e) {
+		e.preventDefault();
+		//parentElement.removeChild(childElement);
+		paymentTbody.removeChild(tr);
+	});
+}

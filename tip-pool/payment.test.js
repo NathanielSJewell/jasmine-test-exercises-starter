@@ -24,4 +24,13 @@ describe(`test all payment.js file functions`, function() {
 		appendPaymentTable(curPayment);
 		expect((newTr.id = 'payment1')).toBeTruthy();
 	});
+	it(`, call updatePaymentSummary()`, function() {
+		allPayments = {
+			payment1: { billAmt: 75, tipAmt: 15, tipePercent: 20 },
+			payment2: { billAmt: 80, tipAmt: 20, tipPercent: 15 },
+			payment3: { billAmt: 50, tipAmt: 10, tipPercent: 12 }
+		};
+		updateSummary();
+		expect(summaryTds[0].innerHTML).toEqual('$205');
+	});
 });

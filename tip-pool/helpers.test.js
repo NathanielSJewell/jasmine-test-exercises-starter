@@ -31,3 +31,19 @@ describe(`test helpers.js functions`, function() {
 		expect(newTr.innerText).toBe(`$100`);
 	});
 });
+
+describe(`test appendDeleteBtn()`, function() {
+	beforeEach(function() {
+		let newTr = document.createElement('tr');
+		let paymentTbody = document.querySelector('#paymentTable tbody');
+		let createTd = document.createElement('td');
+	});
+	it(`should add passed tr to table body`, function() {
+		appendDeleteBtn(newTr);
+		expect(paymentTbody.contains(newTr)).toBeTruthy();
+	});
+	it(`paymentTbody should not contain tr after td is clicked`, function() {
+		appendDeleteBtn(newTr);
+		expect(paymentTbody.contains(newTr)).toBeTruthy();
+	});
+});
